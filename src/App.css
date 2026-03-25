@@ -20,7 +20,7 @@ body{
 
 .weather-box {
   width: 25vw;
-  height: 50vh;
+  height: 55vh;
   border: 3px solid white;
   padding: 30px;
   border-radius: 30px;
@@ -38,7 +38,14 @@ body{
 .weather-bottom h2{
   font-size: 40px;
 }
-
+.weather-img {
+  height: 120px;
+  display: block;
+  margin: 0 auto;
+}
+.weather-temp {
+  font-size: 15px;
+}
 .btn-box {
   margin-top: 20px;
 
