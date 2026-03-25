@@ -1,0 +1,76 @@
+* {
+  font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+  
+}
+body{
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, #b8ddeb 0%, #d6b3e9 100%);
+  color: rgb(44, 42, 42);
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.weather-box {
+  width: 25vw;
+  height: 50vh;
+  border: 3px solid white;
+  padding: 30px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #c4e5f1 0%, #88b6ff 100%);
+}
+
+.weather-bottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  gap: 15px;
+  
+}
+
+.weather-bottom h2{
+  font-size: 40px;
+}
+
+.btn-box {
+  margin-top: 20px;
+
+
+}
+
+.city-btn {
+  width: 100%;
+  background-color: rgba(150, 146, 146, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 10px;
+}
+.city-btn:hover {
+ background-color: rgba(255, 255, 255, 0.4); 
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px); 
+}
+
+.btn-top {
+margin-bottom: 5px;
+}
+.btn-top button {
+  background-color: #7e9fd5;
+  color: #fff; 
+}
+
+
+.btn-bottom {
+  display: flex;
+  gap: 5px; 
+}
+.btn-bottom {
+  .city-btn
+}
