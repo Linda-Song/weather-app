@@ -6,6 +6,7 @@ import RainImg from '../assets/rain.png'
 import ThunderImg from '../assets/thunder.png'
 
 const WeatherBox = ({weather}) => {
+ 
   const temp =  weather?.main.temp;
   const Fahrenheit = (temp * 1.8 + 32 ).toFixed(1);
   const nowWeather = weather?.weather[0].main; 

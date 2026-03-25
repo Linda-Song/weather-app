@@ -9,54 +9,63 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react'
 import WeatherBox from './component/WeatherBox';
 import WeatherBtn from './component/WeatherBtn';
+import { Spinner } from 'react-bootstrap';
 
 function App() {
   const [weather, setWeather] = useState(null);
-  const [city, setCity] =useState('')
-  const cities = ['Paris','New York','Tokyo','Seoul']
+  const [city, setCity] = useState('');
+  const [loading, setLoading] = useState(false);
+  const cities = ['Paris', 'New York', 'Tokyo', 'Seoul'];
 
-
-  const getCurrentLocation =()=> {
-    navigator.geolocation.getCurrentPosition((position)=>{
-      let lat = position.coords.latitude
-      let lon = position.coords.longitude
-      getWeatherByCurrentLocation(lat,lon)
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      getWeatherByCurrentLocation(lat, lon);
     });
-      
   };
 
-  const getWeatherByCurrentLocation = async(lat,lon) => {
+  const getWeatherByCurrentLocation = async (lat, lon) => {
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5418707396359bdd2f47e44473b3fb8a&units=metric`;
-    let response = await fetch(url)
+    setLoading(true);
+    let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
+    setLoading(false);
   };
 
-  const getWeatherByCity = async()=>{
-    
+  const getWeatherByCity = async () => {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5418707396359bdd2f47e44473b3fb8a&units=metric`;
-    let response = await fetch(url)
+    setLoading(true);
+    let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
-  }
+    setLoading(false);
+  };
 
-  useEffect(()=>{
-    if(city == ""){
+  useEffect(() => {
+    if (city === "") {
       getCurrentLocation();
-    } else{
+    } else {
       getWeatherByCity();
     }
-  },[city]);
+  }, [city]);
 
   return (
-    <>
-    <div className='container'>
-      <WeatherBox weather={weather}/>
-      <WeatherBtn cities={cities} setCity={setCity}/>
+    <div className='main-wrap'>
+      {loading ? (
+        <div className='container'>
+          <Spinner animation="border" variant="primary" style={{ width: "3rem", height: "3rem" }} />
+          <p>Loading...</p>
+        </div>
+      ) : (
+        <div className='container'>
+          <WeatherBox weather={weather} />
+          <WeatherBtn cities={cities} setCity={setCity} selectedCity={city}/>
+        </div>
+      )}
     </div>
-     
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
